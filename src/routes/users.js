@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const usersCtrl = require('../controllers/users')
 const boardsCtrl = require('../controllers/boards')
+const usersBoardsCtrl = require('../controllers/users-boards')
 
 const auth = require('../lib/auth')
 //USER ROUTES
@@ -11,6 +12,11 @@ router.get('/auth/token', auth.parseToken)
 //BOARD ROUTES
 router.get('/:userId/main', boardsCtrl.getAll)
 router.get('/:userId/:boardId', boardsCtrl.getOne) 
+router.post('/:userId', boardsCtrl.createOne)
+router.delete('/:userId', boardsCtrl.deleteOne)
+
+//USER_BOARDS ROUTES
+router.post('/:userId/addUser', usersBoardsCtrl.addUser)
 
 
 module.exports = router

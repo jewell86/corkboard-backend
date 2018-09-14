@@ -21,7 +21,6 @@ async function register(body) {
 
 function login({ username, password }) {
   try {
-    console.log(username)
     return db('users')
     .where({ username })
     .then(async ([user]) => {

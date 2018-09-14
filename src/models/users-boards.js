@@ -1,10 +1,11 @@
 const db = require('../../knex')
 
-function create(req, res, next) {
+function addUser(body) {
+  console.log(body)
   return db('users_boards')
-    .insert(req)
+    .insert(body)
     .returning('*')
     .then(([result]) => result)
 }
 
-module.exports = { create }
+module.exports = { addUser }

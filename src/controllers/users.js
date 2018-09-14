@@ -13,15 +13,12 @@ async function register(req, res, next) {
   }
 }
 
-async function login(req, res, next) {
-  console.log(req.body)
-  
+async function login(req, res, next) {  
   try {
     const response = await model.login(req.body)
     const userId = response.id
     const token = auth.createToken(userId)
     res.status(201).json({ token: token, user_id: userId })
-    // console.log(token)
   } catch (e) {
     next({ status: 401, error: `Email or password is incorrect` })
   }
