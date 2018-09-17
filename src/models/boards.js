@@ -2,15 +2,17 @@ const db = require('../../knex')
 
 function getOne(boardId, userId) {
   return db('boards')
-    .where({ id: boardId })
-    .then(async board => {
-      try {
-        if (!board) return {}
-        return { board }
-      } catch (e) {
-        throw new Error(e)
-      }
-    })
+    .where({ 'boards.id': boardId })
+    .join('board_items', 'board_items.board_id', 'boards.id')
+    // .then(([response]) => {
+      // return response
+      // try {
+      //   if (!board) return {}
+      //   return { board }
+      // } catch (e) {
+      //   throw new Error(e)
+      // }
+    // })
 }
 
 function getAll(userId) {
