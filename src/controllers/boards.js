@@ -3,7 +3,7 @@ const { parseToken } = require('../lib/auth')
 
 
 async function getOne(req, res, next) {
-    const response = await model.getOne(req.params.boardId)
+    const response = await model.getOne(req.params.boardId, req.params.userId)
     res.json({ response })
 }
 

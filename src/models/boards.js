@@ -1,9 +1,8 @@
 const db = require('../../knex')
 
-function getOne(id) {
+function getOne(boardId, userId) {
   return db('boards')
-    .select('id', 'users_id', 'title' )
-    .where({ id }).first()
+    .where({ id: boardId })
     .then(async board => {
       try {
         if (!board) return {}
@@ -16,7 +15,6 @@ function getOne(id) {
 
 function getAll(userId) {
     return db('users_boards')
-    // .select('*')
     .where({ users_id: userId })
     .join('boards', 'boards.id', 'users_boards.boards_id')
 }
