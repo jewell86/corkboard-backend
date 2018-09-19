@@ -18,7 +18,8 @@ USERSBOARDS
 -user_id
 
 BOARD ITEMS
--item_name
+-id
+-item_type
 -added_by
 -item_link OR -coordinates
 -item_content

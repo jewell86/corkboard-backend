@@ -26,9 +26,27 @@ async function deleteOne(req, res, next) {
   res.json({ response })
 }
 
+async function addItem(req, res, next) {
+  const userId = req.params.userId
+  const type = req.body.itemType
+  const added_by = req.body.added_by
+  const link = req.body.link
+  const content = req.body.content
+  const board_id = req.body.board_id
+  const response = await model.addItem( 
+    type, 
+    added_by, 
+    link, 
+    content, 
+    board_id
+    )
+  res.json({ response })
+}
+
 module.exports = {
   getOne,
   getAll,
   createOne,
-  deleteOne
+  deleteOne,
+  addItem
 }

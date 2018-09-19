@@ -15,6 +15,18 @@ function getOne(boardId, userId) {
     // })
 }
 
+function addItem(
+  type, 
+  added_by, 
+  link, 
+  content, 
+  board_id) {
+  return db('board_items')
+    .insert({  type, added_by, link, content, board_id })
+    .returning('*')
+    .then(([ response ]) => response)
+}
+
 function getAll(userId) {
     return db('users_boards')
     .where({ users_id: userId })
@@ -95,6 +107,7 @@ function createOne(userId, title) {
 module.exports = {
   getOne, 
   getAll,
-  createOne
+  createOne,
+  addItem
 }
 

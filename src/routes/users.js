@@ -18,5 +18,7 @@ router.delete('/:userId', boardsCtrl.deleteOne)
 //USER_BOARDS ROUTES
 router.post('/:userId/addUser', usersBoardsCtrl.addUser)
 
+//BOARD ITEM ROUTES
+router.post('/:userId/addItem', boardsCtrl.addItem)
 
 module.exports = router
