@@ -27,7 +27,6 @@ async function deleteOne(req, res, next) {
 }
 
 async function addItem(req, res, next) {
-  const userId = req.params.userId
   const type = req.body.itemType
   const added_by = req.body.added_by
   const link = req.body.link

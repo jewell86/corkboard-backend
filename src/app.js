@@ -17,7 +17,7 @@ app.use(require('cors')())
 
 app.post('/update_text', function(req, res){
   var payload = {text: req.body.text, deviceId: req.body.from}
-  pusher.trigger('collabo', 'text_update', payload)
+  pusher.trigger('Corkboard', 'text_update', payload)
   res.json({success: 200})
 });
 
