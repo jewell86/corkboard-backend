@@ -20,5 +20,6 @@ router.post('/:userId/addUser', usersBoardsCtrl.addUser)
 
 //BOARD ITEM ROUTES
 router.post('/:userId/addItem', boardsCtrl.addItem)
+router.patch('/updateItem', boardsCtrl.updateItem)
 
 module.exports = router

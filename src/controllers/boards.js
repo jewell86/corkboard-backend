@@ -42,10 +42,22 @@ async function addItem(req, res, next) {
   res.json({ response })
 }
 
+async function updateItem(req, res, next) {
+  console.log('update')
+  const content = req.body.content
+  const id = req.body.id
+  const response = await model.updateItem( 
+    content, 
+    id
+    )
+  res.json({ response })
+}
+
 module.exports = {
   getOne,
   getAll,
   createOne,
   deleteOne,
-  addItem
+  addItem,
+  updateItem
 }

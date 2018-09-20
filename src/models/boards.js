@@ -46,6 +46,20 @@ function createOne(userId, title) {
     })
 }
 
+function updateItem(content, id) {
+  console.log('update moel')
+  console.log(content, id)
+  return db('board_items')
+    .where({ id: id })
+      .update({
+        'content': content
+        // 'updated_at': new Date()
+      })
+      .returning('*')
+      .then(([response]) => response)
+
+}
+
 // async function addURLsToTutorials(tutorial, id) {
 //   try {
 //     var urls = await db('contents').select('url').where('contents.tutorials_id', id)
@@ -71,19 +85,7 @@ function createOne(userId, title) {
 //     .then(([response]) => response)
 // }
 
-// function update(id, body) {
-//   return find(id).then(response => {
-//     return db('tutorials')
-//       .update({
-//         ...response,
-//         ...body,
-//         updated_at: new Date()
-//       })
-//       .where({ id })
-//       .returning('*')
-//       .then(([response]) => response)
-//   })
-// }
+
 
 // function destroy(id) {
 //   return db('tutorials')
@@ -108,6 +110,7 @@ module.exports = {
   getOne, 
   getAll,
   createOne,
-  addItem
+  addItem,
+  updateItem
 }
 
