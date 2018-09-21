@@ -60,6 +60,14 @@ function updateItem(content, id) {
 
 }
 
+function deleteItem(id) {
+  return db('board_items')
+    .where({ id })
+    .del()
+    .returning('*')
+    .then(([response]) => response)
+}
+
 // async function addURLsToTutorials(tutorial, id) {
 //   try {
 //     var urls = await db('contents').select('url').where('contents.tutorials_id', id)
@@ -88,12 +96,7 @@ function updateItem(content, id) {
 
 
 // function destroy(id) {
-//   return db('tutorials')
-//     .where({ id })
-//     .del()
-//     .returning('*')
-//     .then(([response]) => response)
-// }
+
 
 // function getMyTutorials(userId) {
 //   return db('users_tutorials')
@@ -111,6 +114,7 @@ module.exports = {
   getAll,
   createOne,
   addItem,
-  updateItem
+  updateItem,
+  deleteItem
 }
 

@@ -53,11 +53,19 @@ async function updateItem(req, res, next) {
   res.json({ response })
 }
 
+async function deleteItem(req, res, next) {
+  const id = req.body.id
+  const response = await model.deleteItem(id)
+  res.json({ response })
+
+}
+
 module.exports = {
   getOne,
   getAll,
   createOne,
   deleteOne,
   addItem,
-  updateItem
+  updateItem,
+  deleteItem
 }

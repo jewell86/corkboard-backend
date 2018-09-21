@@ -13,7 +13,7 @@ router.get('/auth/token', auth.parseToken)
 router.get('/:userId/main', boardsCtrl.getAll)
 router.get('/:userId/:boardId', boardsCtrl.getOne) 
 router.post('/:userId', boardsCtrl.createOne)
-router.delete('/:userId', boardsCtrl.deleteOne)
+// router.delete('/:userId', boardsCtrl.deleteOne)
 
 //USER_BOARDS ROUTES
 router.post('/:userId/addUser', usersBoardsCtrl.addUser)
@@ -21,5 +21,6 @@ router.post('/:userId/addUser', usersBoardsCtrl.addUser)
 //BOARD ITEM ROUTES
 router.post('/:userId/addItem', boardsCtrl.addItem)
 router.patch('/updateItem', boardsCtrl.updateItem)
+router.delete('/deleteItem', boardsCtrl.deleteItem)
 
 module.exports = router
