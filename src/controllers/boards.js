@@ -20,9 +20,9 @@ async function createOne(req, res, next) {
 }
 
 async function deleteOne(req, res, next) {
-  const userId = req.params.userId
-  const boardId = req.body.boardId
-  const response = await model.deleteOne(userId, boardId)
+  // const userId = req.params.userId
+  const boardId = req.params.boardId
+  const response = await model.deleteOne(boardId)
   res.json({ response })
 }
 
@@ -32,12 +32,14 @@ async function addItem(req, res, next) {
   const link = req.body.link
   const content = req.body.content
   const board_id = req.body.board_id
+  const webpage_url = req.body.webpage_url
   const response = await model.addItem( 
     type, 
     added_by, 
     link, 
     content, 
-    board_id
+    board_id,
+    webpage_url
     )
   res.json({ response })
 }
@@ -60,6 +62,13 @@ async function deleteItem(req, res, next) {
 
 }
 
+async function updateOne(req, res, next) {
+  const boardId = req.params.boardId
+  const content = req.body.title
+  const response = await model.updateOne(boardId, content)
+  res.json({ response })
+}
+
 module.exports = {
   getOne,
   getAll,
@@ -67,5 +76,6 @@ module.exports = {
   deleteOne,
   addItem,
   updateItem,
-  deleteItem
+  deleteItem,
+  updateOne
 }

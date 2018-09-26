@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 async function register(body) {
  const first_name = body.first_name
  const last_name = body.last_name
- const username = body.username
+ let username = body.username.toLowerCase()
  const email = body.email
  const password = body.password
  const hashed = await promisify(bcrypt.hash)(password, 8)
@@ -20,9 +20,10 @@ async function register(body) {
 }
 
 function login({ username, password }) {
+      let newUsername = username.toLowerCase()
   try {
     return db('users')
-    .where({ username })
+    .where({ username: newUsername })
     .then(async ([user]) => {
       if (!user) throw new Error()
       const isValid = await promisify(bcrypt.compare)(password, user.password)
@@ -42,8 +43,33 @@ async function myProfile(id) {
   }  
 }
 
+async function getByUsername(username) {
+  let username = username.toLowerCase()
+  try {
+    return await db('users')
+      .where({ 'username': username })
+      .select('users.id')
+      .then(([response]) => response)
+  } catch(e) {
+    throw new Error(e)
+  }  
+}
+
+async function getById(userId) {
+  try {
+    return await db('users')
+    .where({ id: userId })
+    .select('username')
+    .then(([response]) => response)
+  } catch(e) {
+    throw new Error(e)
+  }  
+}
+
 module.exports = {
   register, 
   login,
-  myProfile
+  myProfile,
+  getByUsername,
+  getById
 }

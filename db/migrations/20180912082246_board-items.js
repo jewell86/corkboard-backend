@@ -4,11 +4,12 @@ exports.up = function(knex, Promise) {
     table.increments()
     table.string('type', 75).notNullable()
     table.integer('added_by').notNullable()
-    table.foreign('added_by').references('users.id')
+    // table.foreign('added_by').references('users.id')
     table.string('link', 1000)
     table.string('content')
     table.integer('board_id').notNullable()
     // table.foreign('board_id').references('boards.id').onDelete('CASCADE')
+    table.string('webpage_url', 2000)
     table.timestamps(true, true)
   })
 };

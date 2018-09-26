@@ -20,9 +20,10 @@ function addItem(
   added_by, 
   link, 
   content, 
-  board_id) {
+  board_id,
+  webpage_url) {
   return db('board_items')
-    .insert({  type, added_by, link, content, board_id })
+    .insert({  type, added_by, link, content, board_id, webpage_url })
     .returning('*')
     .then(([ response ]) => response)
 }
@@ -46,6 +47,14 @@ function createOne(userId, title) {
     })
 }
 
+function deleteOne(boardId) {
+  return db('boards')
+    .where({ id: boardId })
+    .del()
+    .returning('*')
+    .then(([response]) => response)
+}
+
 function updateItem(content, id) {
   console.log('update moel')
   console.log(content, id)
@@ -64,6 +73,14 @@ function deleteItem(id) {
   return db('board_items')
     .where({ id })
     .del()
+    .returning('*')
+    .then(([response]) => response)
+}
+
+function updateOne(boardId, content) {
+  return db('boards')
+    .where({ id: boardId})
+    .update({ 'title': content })
     .returning('*')
     .then(([response]) => response)
 }
@@ -113,8 +130,10 @@ module.exports = {
   getOne, 
   getAll,
   createOne,
+  deleteOne,
   addItem,
   updateItem,
-  deleteItem
+  deleteItem,
+  updateOne
 }
 

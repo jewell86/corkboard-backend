@@ -24,8 +24,30 @@ async function login(req, res, next) {
   }
 }
 
+async function getByUsername(req, res, next) {
+  try {
+    const username = req.params.username
+    const response = await model.getByUsername(username)
+    res.status(201).json({ response })
+  } catch (e) {
+    next({ status: 401, error: `Could not get by username` })
+  }
+}
+
+async function getById(req, res, next) {
+  try {
+    const userId = req.params.userId
+    const response = await model.getById(userId)
+    res.status(201).json({ response })
+  } catch (e) {
+    next({ status: 401, error: `Could not get by id` })
+  }
+}
+
 module.exports = {
   register, 
   login,
+  getByUsername,
+  getById
 
 }
