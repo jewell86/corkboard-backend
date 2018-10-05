@@ -8,11 +8,10 @@ function addUser(boards_id, users_id ) {
           if (rows.length===0) {
           return db('users_boards').insert({ users_id, boards_id })      
           } else {
-            console.log('we hit else')
-            throw('fuck off boiiii')
+
           }
       })
-      .catch('fuck off boiiii')
+      
 
 }
 

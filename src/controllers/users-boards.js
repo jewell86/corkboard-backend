@@ -19,7 +19,7 @@ async function addUser(req, res, next) {
     const response = await model.addUser(boards_id, users_id)
     res.status(201).json({ response })
   } catch (e) {
-    console.log('in catch of add user ', e)
+    // console.log('in catch of add user ', e)
     next({ status: 400, error: String(e) || 'Could not add user to board' })
   }
 }

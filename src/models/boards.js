@@ -21,9 +21,10 @@ function addItem(
   link, 
   content, 
   board_id,
-  webpage_url) {
+  webpage_url, 
+  location) {
   return db('board_items')
-    .insert({  type, added_by, link, content, board_id, webpage_url })
+    .insert({  type, added_by, link, content, board_id, webpage_url, location })
     .returning('*')
     .then(([ response ]) => response)
 }
@@ -56,8 +57,6 @@ function deleteOne(boardId) {
 }
 
 function updateItem(content, id) {
-  console.log('update moel')
-  console.log(content, id)
   return db('board_items')
     .where({ id: id })
       .update({

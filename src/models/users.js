@@ -44,11 +44,11 @@ async function myProfile(id) {
 }
 
 async function getByUsername(username) {
-  let username = username.toLowerCase()
+    console.log('users model')
   try {
     return await db('users')
       .where({ 'username': username })
-      .select('users.id')
+      .select('id')
       .then(([response]) => response)
   } catch(e) {
     throw new Error(e)
@@ -66,10 +66,62 @@ async function getById(userId) {
   }  
 }
 
+async function deleteOneUser(userId) {
+  try {
+    return await db('users')
+    .where({ id: userId })
+    .del()
+    .then(([response]) => response)
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
+async function deleteUserBoards(userId) {
+  try {
+    return await db('users_boards')
+    .where({ users_id: userId })
+    .del()
+    .then(([response]) => response)
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
+async function updateUser(userId, body) {
+  const first_name = body.first_name 
+  const last_name = body.last_name
+  const username = body.username.toLowerCase()
+  const email = body.email
+  const password = body.password
+  const hashed = await promisify(bcrypt.hash)(password, 8)
+  try{
+    return db('users')
+      .where({ 'id': userId })
+      .update({ first_name, last_name, username, email, password: hashed })
+      .returning('*')
+      .then(([response]) => response)
+   } catch(e) {
+     throw new Error(e)
+   }
+}
+
+async function getAll() {
+  try {
+    return db('users')
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
 module.exports = {
   register, 
   login,
   myProfile,
   getByUsername,
-  getById
+  getById,
+  deleteOneUser,
+  deleteUserBoards,
+  updateUser,
+  getAll
 }

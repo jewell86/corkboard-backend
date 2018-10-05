@@ -20,7 +20,6 @@ async function createOne(req, res, next) {
 }
 
 async function deleteOne(req, res, next) {
-  // const userId = req.params.userId
   const boardId = req.params.boardId
   const response = await model.deleteOne(boardId)
   res.json({ response })
@@ -33,19 +32,20 @@ async function addItem(req, res, next) {
   const content = req.body.content
   const board_id = req.body.board_id
   const webpage_url = req.body.webpage_url
+  const location = req.body.location
   const response = await model.addItem( 
     type, 
     added_by, 
     link, 
     content, 
     board_id,
-    webpage_url
+    webpage_url,
+    location
     )
   res.json({ response })
 }
 
 async function updateItem(req, res, next) {
-  console.log('update')
   const content = req.body.content
   const id = req.body.id
   const response = await model.updateItem( 

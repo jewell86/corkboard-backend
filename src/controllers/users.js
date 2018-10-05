@@ -25,6 +25,7 @@ async function login(req, res, next) {
 }
 
 async function getByUsername(req, res, next) {
+  console.log("users controller")
   try {
     const username = req.params.username
     const response = await model.getByUsername(username)
@@ -44,10 +45,45 @@ async function getById(req, res, next) {
   }
 }
 
+async function deleteOneUser(req, res, next) {
+ try {
+  const userId = req.params.userId
+  const response = await model.deleteOneUser(userId)
+  const reply = await model.deleteUserBoards(userId)
+  res.status(201).json({ response })
+ } catch (e) {
+  next({ status: 401, error: `Could not delete user` })
+ }
+}
+
+async function updateUser(req, res, next) {
+  try {
+    const userId = req.params.userId
+    const body = req.body
+    const response = await model.updateUser(userId, body)
+    res.status(201).json({ response })
+  } catch(e) {
+    next({ status: 401, error: `Could not update user` })
+
+  }
+}
+
+async function getAll(req, res, next) {
+  try {
+    const response = await model.getAll()
+    res.status(201).json({ response })
+  } catch(e) {
+    next({ status: 401, error: `Could not get all users` })
+  } 
+}
+
 module.exports = {
   register, 
   login,
   getByUsername,
-  getById
+  getById,
+  deleteOneUser,
+  updateUser,
+  getAll
 
 }

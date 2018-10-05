@@ -11,6 +11,10 @@ router.post('/login', usersCtrl.login)
 router.get('/auth/token', auth.parseToken)
 router.get('/byUsername/:username', usersCtrl.getByUsername)
 router.get('/byId/:userId', usersCtrl.getById)
+router.get('/getAll', usersCtrl.getAll)
+//ADD AUTH TO deleteUser/:userId
+router.post('/deleteUser/:userId', usersCtrl.deleteOneUser)
+router.patch('/updateUser/:userId', usersCtrl.updateUser)
 
 router.post('/addItem', boardsCtrl.addItem)
 
