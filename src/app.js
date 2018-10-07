@@ -4,6 +4,7 @@ const { PORT = 5000, NODE_ENV = 'development' } = process.env
 let Pusher = require('pusher');
 let bodyParser = require('body-parser');
 let pusher = new Pusher(require('./config.js'));
+require('dotenv').config()
 
 if (NODE_ENV === 'development') {
   require('dotenv').load()
