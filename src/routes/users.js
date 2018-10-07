@@ -2,7 +2,6 @@ const router = require('express').Router()
 const usersCtrl = require('../controllers/users')
 const boardsCtrl = require('../controllers/boards')
 const usersBoardsCtrl = require('../controllers/users-boards')
-console.log("here")
 const auth = require('../lib/auth')
 
 //USER ROUTES
@@ -18,7 +17,6 @@ router.patch('/updateUser/:userId', usersCtrl.updateUser)
 
 router.post('/addItem', boardsCtrl.addItem)
 
-
 //USER_BOARDS ROUTES
 router.get('/:boardId/getAllUsers', usersBoardsCtrl.getAllUsers)
 router.post('/:boardId/addUser', usersBoardsCtrl.addUser)
@@ -32,7 +30,7 @@ router.delete('/:boardId/deleteBoard', boardsCtrl.deleteOne)
 router.patch('/:boardId/renameBoard', boardsCtrl.updateOne)
 
 //BOARD ITEM ROUTES 
-router.patch('/updateItem', boardsCtrl.updateItem)
-router.delete('/deleteItem', boardsCtrl.deleteItem)
+router.patch('/updateItem/', boardsCtrl.updateItem)
+router.delete('/deleteItem/:itemId', boardsCtrl.deleteItem)
 
 module.exports = router

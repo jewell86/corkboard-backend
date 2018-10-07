@@ -56,7 +56,7 @@ async function updateItem(req, res, next) {
 }
 
 async function deleteItem(req, res, next) {
-  const id = req.body.id
+  const id = req.params.itemId
   const response = await model.deleteItem(id)
   res.json({ response })
 
@@ -77,5 +77,5 @@ module.exports = {
   addItem,
   updateItem,
   deleteItem,
-  updateOne
+  updateOne,
 }

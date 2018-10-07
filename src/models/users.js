@@ -3,24 +3,24 @@ const db = require('../../knex')
 const bcrypt = require('bcryptjs')
 
 async function register(body) {
- const first_name = body.first_name
- const last_name = body.last_name
- let username = body.username.toLowerCase()
- const email = body.email
- const password = body.password
- const hashed = await promisify(bcrypt.hash)(password, 8)
- try{
-  return db('users')
-    .insert({ first_name, last_name, username, email, password: hashed })
-    .returning('*')
-    .then(([response]) => response)
- } catch(e) {
-   throw new Error(e)
- }
+  const first_name = body.first_name
+  const last_name = body.last_name
+  let username = body.username.toLowerCase()
+  const email = body.email
+  const password = body.password
+  const hashed = await promisify(bcrypt.hash)(password, 8)
+  try {
+    return db('users')
+      .insert({ first_name, last_name, username, email, password: hashed })
+      .returning('*')
+      .then(([response]) => response)
+  } catch(e) {
+    throw new Error(e)
+  }
 }
 
 function login({ username, password }) {
-      let newUsername = username.toLowerCase()
+  let newUsername = username.toLowerCase()
   try {
     return db('users')
     .where({ username: newUsername })
@@ -44,7 +44,6 @@ async function myProfile(id) {
 }
 
 async function getByUsername(username) {
-    console.log('users model')
   try {
     return await db('users')
       .where({ 'username': username })
