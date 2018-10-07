@@ -28,10 +28,11 @@
     "pg": "^7.4.3",
     "sql": "^0.78.0",
     "path": "^0.12.7",
-    "pusher": "^1.5.1"
+    "pusher": "^1.5.1",
+    "dotenv": "^6.0.0"
+
   },
   "devDependencies": {
-    "dotenv": "^6.0.0",
     "nodemon": "^1.18.3",
     "run-all": "^1.0.1"
   }
