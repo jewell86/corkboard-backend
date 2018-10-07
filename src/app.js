@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const { PORT = 5000, NODE_ENV = 'development' } = process.env
+const { PORT = 5000, NODE_ENV = 'production' } = process.env
 let path = require('path');
 let Pusher = require('pusher');
 let bodyParser = require('body-parser');
