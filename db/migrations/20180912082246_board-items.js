@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
     table.integer('board_id').notNullable()
     table.string('webpage_url', 2000)
     table.string('location', 100)
+    table.integer('position').notNullable()
 
     table.timestamps(true, true)
   })

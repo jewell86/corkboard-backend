@@ -72,7 +72,22 @@ function updateItem(content, id) {
     return db('board_items')
     .where({ id: id })
       .update({
-        'content': content
+        'content': content,
+        'position': position
+      })
+      .returning('*')
+      .then(([response]) => response)
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
+function updateItem(position, id) {
+  try {
+    return db('board_items')
+    .where({ id: id })
+      .update({
+        'position': position
       })
       .returning('*')
       .then(([response]) => response)
