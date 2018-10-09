@@ -72,8 +72,7 @@ function updateItem(content, id) {
     return db('board_items')
     .where({ id: id })
       .update({
-        'content': content,
-        'position': position
+        'content': content
       })
       .returning('*')
       .then(([response]) => response)
