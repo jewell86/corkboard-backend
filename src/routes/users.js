@@ -13,6 +13,7 @@ router.get('/byId/:userId', usersCtrl.getById)
 router.get('/getAll', usersCtrl.getAll)
 router.post('/deleteUser/:userId', usersCtrl.deleteOneUser)
 router.patch('/updateUser/:userId', usersCtrl.updateUser)
+
 router.post('/addItem', boardsCtrl.addItem)
 
 //USER_BOARDS ROUTES
@@ -29,8 +30,6 @@ router.patch('/:boardId/renameBoard', boardsCtrl.updateOne)
 
 //BOARD ITEM ROUTES 
 router.patch('/updateItem/', boardsCtrl.updateItem)
-router.patch('/updatePosition/', boardsCtrl.updatePosition)
-
 router.delete('/deleteItem/:itemId', boardsCtrl.deleteItem)
 
 module.exports = router

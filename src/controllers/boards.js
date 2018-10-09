@@ -55,15 +55,7 @@ async function updateItem(req, res, next) {
   res.json({ response })
 }
 
-async function updatePosition(req, res, next) {
-  const content = req.body.position
-  const id = req.body.id
-  const response = await model.updatePosition( 
-    content, 
-    id
-    )
-  res.json({ response })
-}
+
 
 async function deleteItem(req, res, next) {
   const id = req.params.itemId
@@ -86,7 +78,6 @@ module.exports = {
   deleteOne,
   addItem,
   updateItem,
-  updatePosition,
   deleteItem,
   updateOne,
 }
