@@ -24,13 +24,14 @@ Currently to run this app, Xcode is a requirement.
 
 createdb corkboard_dev
 
-npm install
+  npm install
 
-npm run migrate
+  npm run migrate
 
-npm run seed
+  npm run seed
 
-npm run dev-server
+  npm run dev-server
+  
 
 
 This app is also hosted live on Heroku at https://powerful-earth-36700.herokuapp.com/
